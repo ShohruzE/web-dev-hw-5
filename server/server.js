@@ -74,13 +74,11 @@ app.delete("/tasks/:id", async (req, res) => {
 });
 
 mongoose
-  .connect(
-    "mongodb+srv://shohruzernazarov04:a7n5nTRGB4TKuHUq@tasks.hj6r0.mongodb.net/?retryWrites=true&w=majority&appName=tasks"
-  )
+  .connect(process.env.MONGODB_CONNECTION_STRING)
   .then(() => {
     console.log("Connected to MongoDB");
-    app.listen(3000, () => {
-      console.log("Server is running on port 3000");
+    app.listen(process.env.PORT || 3000, () => {
+      console.log(`Server is running on port ${process.env.PORT || 3000}`);
     });
   })
   .catch((error) => {
